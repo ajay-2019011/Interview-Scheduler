@@ -27,6 +27,12 @@ p{
     font-size: x-large;
 }
 
+#instruct{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
 #schedule-btn{
     display:inline-block;
     padding:0.35em 1.2em;

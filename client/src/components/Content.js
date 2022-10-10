@@ -10,6 +10,7 @@ export default function Content(){
                 of the most important thing to keep in mind, kindly schedule an interview in a way such that there 
                 is no clash in interview timings for any student.
             </p>
+            <p id="instruct">Click the button below to schedule an interview</p>
             <button id="schedule-btn">Schedule Interview</button>
         </div>
     )

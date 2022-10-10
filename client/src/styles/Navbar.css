@@ -12,7 +12,7 @@
     margin-left: auto;
     display: flex;
     justify-content: space-between;
-    max-width: 400px;
+    max-width: 650px;
 }
 
 .header-btn{
@@ -34,7 +34,7 @@
     background-color:#FFFFFF;
 }
 
-#company-btn, #candidate-btn{
+#interviews-btn, #company-btn, #candidate-btn{
     display:inline-block; 
     padding: 0.3em 1.2em;
     border:none;
@@ -50,7 +50,7 @@
     text-align:center;
     transition: all 0.2s;
 }
-#company-btn:hover, #candidate-btn:hover{
+#interviews-btn:hover, #company-btn:hover, #candidate-btn:hover{
     color:#000000;
     background-color:#FFFFFF;
     border-color:cadetblue;
