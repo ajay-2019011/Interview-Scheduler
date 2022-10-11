@@ -2,7 +2,8 @@
     margin: 4rem 12rem;
     background-color: rgb(190, 235, 236);
     color: black;
-    height: 30rem;
+    height: 100%;
+    padding: 1rem 2rem;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
     border-radius: 0.5rem;
     display: flex;
@@ -15,21 +16,16 @@
 }
 
 h1{
-    margin-top: 0;
-    margin-bottom: 0;
     font-size: 2.5rem;
 }
 
 p{
-    margin-top: 0;
     margin-left: 6rem;
     margin-right: 6rem;
     font-size: x-large;
 }
 
 #instruct{
-    margin-top: 0;
-    margin-bottom: 0;
     font-weight: 600;
 }
 
@@ -37,7 +33,7 @@ p{
     display:inline-block;
     padding:0.35em 1.2em;
     border:none;
-    margin:0 0.3em 0.3em 0;
+    margin:0.5rem 0.3em;
     border-radius:0.3em;
     box-sizing: border-box;
     text-decoration:none;
