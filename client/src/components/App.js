@@ -3,6 +3,7 @@ import '../styles/App.css';
 import Navbar from './Navbar'
 import Content from './Content'
 import Form from './Form'
+import List from './List'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Navbar />
         <Content />
         <Form />
+        <List />
       </header>
       <footer></footer>
     </div>

@@ -1,4 +1,5 @@
 import React from "react"
+// import DatePicker from 'react-date-picker'
 import '../styles/Form.css'
 
 export default function Form() {
@@ -17,6 +18,7 @@ export default function Form() {
     
     function handleChange(event) {
         const {name, value, type, checked} = event.target
+        console.log(event.target)
         setFormData(prevFormData => {
             return {
                 ...prevFormData,
@@ -32,7 +34,7 @@ export default function Form() {
     }
     
     return (
-        <div class="form-wrapper">
+        <div className="form-wrapper">
             <h1 id="form-heading">Fill the given Form</h1>
             <form 
                 onSubmit={handleSubmit}
@@ -108,6 +110,15 @@ export default function Form() {
                         <option value="hr">Human Resources</option>
                     </select>
                 </div>
+                {/* <div>
+                    <label htmlFor="date">Date for Interview :  </label>
+                    <DatePicker 
+                        id="date"
+                        name="date"
+                        // value={formData.date}
+                        //onChange={handleChange} 
+                    />
+                </div> */}
                 <div id="checkbox">
                     <input 
                         type="checkbox" 
@@ -127,7 +138,7 @@ export default function Form() {
                         name="comments"
                     />
                 </div>
-                <button>Submit</button>
+                <button id="submit">Submit</button>
         </form>
     </div>
     )

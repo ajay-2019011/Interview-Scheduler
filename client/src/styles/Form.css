@@ -39,3 +39,62 @@ button{
 #position{
     text-align: center;
 }
+
+#date{
+    width: 100%;
+}
+
+input,
+textarea,
+select{
+  border: 2px solid #333;
+  background-color: white;
+  border-radius: 0.25rem;
+}
+
+input[type="text"],
+input[type="email"],
+textarea,
+select{
+  font: 1.25rem / 1.5 sans-serif;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+}
+
+input[type="checkbox"] {
+    height: 1.5em;
+    width: 1.5em;
+    vertical-align: middle;
+}
+
+label{
+    display: inline-block;
+    font: bold 1.2rem sans-serif;
+    margin-bottom: 0.5rem;
+}
+
+#submit{
+    display:inline-block;
+    padding:0.35em 1.2em;
+    border:none;
+    margin:0.5rem 0.3em;
+    border-radius:0.3em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:bold;
+    font-size: x-large;
+    color:#FFFFFF;
+    background-color: rgb(0, 105, 255);
+    text-align:center;
+    transition: all 0.2s;
+    height: 3rem;
+    width: 18rem;
+    align-self: center;
+}
+#submit:hover{
+    color:rgb(0, 105, 255);
+    background-color:#FFFFFF;
+}
