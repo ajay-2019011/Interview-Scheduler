@@ -17,11 +17,18 @@
 
 th{
     font-size: x-large;
+    margin-bottom: 4rem;
+}
+
+tr{
+    margin-bottom: 2rem;
 }
 
 td{
+    padding: 1rem;
     text-align: center;
     font-size: large;
+    margin-bottom: 2rem;
 }
 
 .interview-list button{

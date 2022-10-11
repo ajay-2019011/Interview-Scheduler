@@ -15,9 +15,12 @@
     width:35%;
 }
 
+.navbar h2{
+    margin: 0;
+}
 #headerBtn{
     display:inline-block;
-    padding:0.35em 1.2em; 
+    padding:0.6em 0.6em; 
     border:none;
     margin:0 0.3em 0.3em 0;
     width:20%;
@@ -25,6 +28,7 @@
     box-sizing: border-box;
     text-decoration:none;
     font-family:'Roboto',sans-serif;
+    font-size: large;
     font-weight:300;
     color:#FFFFFF;
     background-color: #282c34;
@@ -38,7 +42,7 @@
 
 #interviewBtn, #candidateBtn{
     display:inline-block; 
-    padding: 0.3em 1.2em;
+    padding: 0.4em 1.2em;
     border:none;
     margin:0 2em 0.3em 0;
     width: 30%;
@@ -47,7 +51,7 @@
     text-decoration:none;
     font-size: 1rem;
     font-family:'Roboto',sans-serif;
-    font-weight:300;
+    font-weight:500;
     color:#FFFFFF;
     background-color: #4eb5f1;
     text-align:center;

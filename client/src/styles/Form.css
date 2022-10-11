@@ -44,6 +44,10 @@ button{
     width: 100%;
 }
 
+#toSend{
+    margin: 0 0.5rem;
+}
+
 input,
 textarea,
 select{
@@ -79,7 +83,7 @@ label{
     display:inline-block;
     padding:0.35em 1.2em;
     border:none;
-    margin:0.5rem 0.3em;
+    margin:1rem 0.3em;
     border-radius:0.3em;
     box-sizing: border-box;
     text-decoration:none;

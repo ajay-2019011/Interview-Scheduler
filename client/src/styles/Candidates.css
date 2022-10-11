@@ -16,10 +16,22 @@
 }
 
 th{
+    margin-top: 4rem;
     font-size: x-large;
+    margin-bottom: 4rem;
+    padding: 1rem;
+}
+
+tr{
+    padding: 1rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
 }
 
 td{
+    padding: 1rem;
+    margin-top: 4rem;
     text-align: center;
     font-size: large;
+    margin-bottom: 2rem;
 }
