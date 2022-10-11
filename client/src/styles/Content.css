@@ -29,7 +29,7 @@ p{
     font-weight: 600;
 }
 
-#schedule-btn{
+#scheduleBtn{
     display:inline-block;
     padding:0.35em 1.2em;
     border:none;
@@ -48,7 +48,7 @@ p{
     width: 18rem;
     align-self: center;
 }
-#schedule-btn:hover{
+#scheduleBtn:hover{
     color:rgb(25, 25, 96);
     background-color:#FFFFFF;
 }

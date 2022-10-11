@@ -1,19 +1,20 @@
 import React from 'react'
-import '../styles/List.css'
+import '../styles/Candidates.css'
 
 export default function List(){
     return(
-        <div className="interview-list">
+        <div className="candidate-list">
             <table>
-                <caption><h1>List of Interviews Scheduled</h1></caption>
+                <caption><h1>List of Candidates eligible for Interview</h1></caption>
                 <thead>
                     <tr>
                         <th>Candidate Name</th>
                         <th>Email</th>
+                        <th>Mobile No</th>
                         <th>Position</th>
-                        <th>Date</th>
-                        <th>Timings</th>
-                    </tr>  
+                        <th>College</th>
+                        
+                    </tr>
                 </thead>
                 <tbody>
                     <tr>
@@ -22,7 +23,6 @@ export default function List(){
                         <td>Solo learn</td>
                         <td>W3Schools</td>
                         <td>Academind</td>
-                        <td><button>Edit</button></td>
                     </tr>
                     <tr>
                         <td>Khan Academy</td>
@@ -30,7 +30,6 @@ export default function List(){
                         <td>Solo learn</td>
                         <td>W3Schools</td>
                         <td>Academind</td>
-                        <td><button>Edit</button></td>
                     </tr>
                     <tr>
                         <td>Khan Academy</td>
@@ -38,7 +37,6 @@ export default function List(){
                         <td>Solo learn</td>
                         <td>W3Schools</td>
                         <td>Academind</td>
-                        <td><button>Edit</button></td>
                     </tr>
                     <tr>
                         <td>W3Schools</td>
@@ -46,7 +44,6 @@ export default function List(){
                         <td>Programming Hero</td>
                         <td>Academind</td>
                         <td>Programming Hero</td>
-                        <td><button>Edit</button></td>
                     </tr>
                 </tbody>
             </table>

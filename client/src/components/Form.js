@@ -5,12 +5,12 @@ import '../styles/Form.css'
 export default function Form() {
     const [formData, setFormData] = React.useState(
         {
-            firstName: "", 
-            lastName: "", 
+            name: "", 
             email: "", 
             mobile: "",
             college: "", 
             position: "",
+            date: "",
             toSend: false,
             comments: ""
         }
@@ -41,23 +41,13 @@ export default function Form() {
                 id="form"
             >
                 <div>
-                    <label htmlFor="firstName">First Name:  </label>
+                    <label htmlFor="name">Candidate Name:  </label>
                     <input
                         type="text"
-                        placeholder="First Name"
+                        placeholder="Candidate Name"
                         onChange={handleChange}
-                        name="firstName"
-                        value={formData.firstName}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="lastName">Last Name:  </label>
-                    <input
-                        type="text"
-                        placeholder="Last Name"
-                        onChange={handleChange}
-                        name="lastName"
-                        value={formData.lastName}
+                        name="name"
+                        value={formData.name}
                     />
                 </div>
                 <div>
@@ -115,8 +105,8 @@ export default function Form() {
                     <DatePicker 
                         id="date"
                         name="date"
-                        // value={formData.date}
-                        //onChange={handleChange} 
+                        value={formData.date}
+                        onChange={handleChange} 
                     />
                 </div> */}
                 <div id="checkbox">

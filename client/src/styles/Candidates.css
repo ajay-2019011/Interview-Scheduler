@@ -1,0 +1,25 @@
+.candidate-list{
+    margin: 4rem auto;
+    padding: 1.5rem 2.5rem;
+    background-color: rgb(190, 235, 236);
+    color: black;
+    height: 100%;
+    max-width:80%;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+}
+.candidate-list:hover{
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+th{
+    font-size: x-large;
+}
+
+td{
+    text-align: center;
+    font-size: large;
+}
