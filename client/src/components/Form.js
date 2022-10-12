@@ -9,9 +9,9 @@ export default function Form() {
     const [mobile, setMobile] = React.useState("");
     const [college, setCollege] = React.useState("");
     const [position, setPosition] = React.useState("");
-    const [date, setDate] = React.useState(new Date());
-    const [startTime, setStartTime] = React.useState("14:04");
-    const [endTime, setEndTime] = React.useState("17:23");
+    const [date, setDate] = React.useState(null);
+    const [startTime, setStartTime] = React.useState(null);
+    const [endTime, setEndTime] = React.useState(null);
     const [toSend, setToSend] = React.useState(false);
     // const [formData, setFormData] = React.useState(
     //     {
@@ -53,21 +53,37 @@ export default function Form() {
         setToSend(event.target.checked)
     }
     function handleDateChange(event){
-        console.log(JSON.stringify(event))
+        //console.log(JSON.stringify(event))
         setDate(new Date(event))
     }
     function handleStartTimeChange(event){
-        setStartTime(event.value)
+        setStartTime(event)
     }
     function handleEndTimeChange(event){
-        setEndTime(event.value)
+        setEndTime(event)
     }
     
+    function handleReset(event){
+        setName("")
+        setEmail("")
+        setMobile("")
+        setCollege("")
+        setPosition("")
+        setDate(null)
+        // setStartTime(null)
+        // setEndTime(null)
+        setToSend(false)
+        
+        console.log(startTime);
+    }
+
     function handleSubmit(event) {
         event.preventDefault()
         // submitToApi(formData)
-        console.log(name, email, mobile, college, position, toSend, date, startTime)
+        
+        console.log(name, email, mobile, college, position, toSend, date, startTime, endTime)
     }
+
     return (
         <div className="form-wrapper">
             <h1 id="form-heading">Fill the given Form</h1>
@@ -76,7 +92,7 @@ export default function Form() {
                 id="form"
             >
                 <div>
-                    <label htmlFor="name">Candidate Name:  </label>
+                    <label htmlFor="name">Candidate Name  </label>
                     <input
                         type="text"
                         placeholder="Candidate Name"
@@ -86,7 +102,7 @@ export default function Form() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="email">E-mail:  </label>
+                    <label htmlFor="email">E-mail  </label>
                     <input
                         type="email"
                         placeholder="Email"
@@ -96,7 +112,7 @@ export default function Form() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="mobile">Mobile No:  </label>
+                    <label htmlFor="mobile">Mobile No  </label>
                     <input
                         type="text"
                         placeholder="98456XXXXX"
@@ -106,7 +122,7 @@ export default function Form() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="college">College/University :  </label>
+                    <label htmlFor="college">College/University   </label>
                     <input
                         type="text"
                         placeholder="College Name"
@@ -136,7 +152,7 @@ export default function Form() {
                     </select>
                 </div>
                 <div>
-                    <label htmlFor="date">Date for Interview :  </label>
+                    <label htmlFor="date">Date for Interview   </label>
                     <DatePicker 
                         id="date"
                         name="date"
@@ -145,14 +161,16 @@ export default function Form() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="startTime">Start time for Interview :  </label>
+                    <label htmlFor="startTime">Start time for Interview   </label>
                     <TimePicker 
                         id="startTime"
                         name="startTime"
                         onChange={handleStartTimeChange} 
                         value={startTime} 
                     />
-                    <label htmlFor="endTime">End time for Interview :  </label>
+                </div>
+                <div>
+                    <label htmlFor="endTime">End time for Interview   </label>
                     <TimePicker 
                         id="endTime"
                         name="endTime"
@@ -171,6 +189,11 @@ export default function Form() {
                     <label htmlFor="toSend">Do you want to notify the candidate by E-mail?</label>
                 </div>
                 <button id="submit">Submit</button>
+                <button 
+                    type="reset" 
+                    id="reset"  
+                    onClick={handleReset}
+                >Clear Form</button>
         </form>
     </div>
     )

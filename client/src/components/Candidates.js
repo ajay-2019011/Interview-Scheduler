@@ -1,7 +1,29 @@
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import '../styles/Candidates.css'
+import { urls } from '../urls/urls'
+import InvokeAPI from '../api/InvokeAPI'
 
 export default function List(){
+
+    const [candidatesData, setCandidatesData] = useState([])
+    const [candidateNames, setCandidateNames] = useState([])
+    const [candidateEmails, setCandidateEmails] = useState([])
+
+    async function fetchAllCandidatesData()
+    {
+        var response = await InvokeAPI.get(urls.ALL_CANDIDATES)
+        setCandidatesData(response.Users)
+        var names = [], emails = []
+
+        candidatesData.forEach((candidate)=>{
+            names.push(candidate.name)
+            emails.push(candidate.email)
+        })
+    }
+
+    useEffect(()=>{
+        fetchAllCandidatesData();
+    },[])
     return(
         <div className="candidate-list">
             <table>
@@ -10,41 +32,11 @@ export default function List(){
                     <tr>
                         <th>Candidate Name</th>
                         <th>Email</th>
-                        <th>Mobile No</th>
-                        <th>Position</th>
-                        <th>College</th>
                         
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Khan Academy</td>
-                        <td>The Coding Train</td>
-                        <td>Solo learn</td>
-                        <td>W3Schools</td>
-                        <td>Academind</td>
-                    </tr>
-                    <tr>
-                        <td>Khan Academy</td>
-                        <td>The Coding Train</td>
-                        <td>Solo learn</td>
-                        <td>W3Schools</td>
-                        <td>Academind</td>
-                    </tr>
-                    <tr>
-                        <td>Khan Academy</td>
-                        <td>The Coding Train</td>
-                        <td>Solo learn</td>
-                        <td>W3Schools</td>
-                        <td>Academind</td>
-                    </tr>
-                    <tr>
-                        <td>W3Schools</td>
-                        <td>Academind</td>
-                        <td>Programming Hero</td>
-                        <td>Academind</td>
-                        <td>Programming Hero</td>
-                    </tr>
+                    
                 </tbody>
             </table>
         </div>

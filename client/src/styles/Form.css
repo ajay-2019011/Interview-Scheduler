@@ -36,6 +36,13 @@ button{
     align-self: center;
 }
 
+#reset{
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: rgb(143, 6, 6);
+    width:70%
+}
+
 #position{
     text-align: center;
 }
