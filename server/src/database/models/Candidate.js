@@ -5,7 +5,9 @@ const Candidate = {
         type : String,
         required : true
     },
-    name : String
+    name : String,
+    college : String,
+    position : String
 }
 
 module.exports = mongoose.model("Candidate", Candidate);

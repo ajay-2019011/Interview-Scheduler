@@ -6,19 +6,11 @@ import InvokeAPI from '../api/InvokeAPI'
 export default function List(){
 
     const [candidatesData, setCandidatesData] = useState([])
-    const [candidateNames, setCandidateNames] = useState([])
-    const [candidateEmails, setCandidateEmails] = useState([])
 
     async function fetchAllCandidatesData()
     {
         var response = await InvokeAPI.get(urls.ALL_CANDIDATES)
         setCandidatesData(response.Users)
-        var names = [], emails = []
-
-        candidatesData.forEach((candidate)=>{
-            names.push(candidate.name)
-            emails.push(candidate.email)
-        })
     }
 
     useEffect(()=>{
@@ -32,10 +24,22 @@ export default function List(){
                     <tr>
                         <th>Candidate Name</th>
                         <th>Email</th>
-                        
+                        <th>College</th>
+                        <th>Position</th>
                     </tr>
                 </thead>
                 <tbody>
+                    
+                    {candidatesData.map((candidate) => {
+                        return (
+                            <tr>
+                                <td>{candidate.name}</td>
+                                <td>{candidate.email}</td>
+                                <td>{candidate.college}</td>
+                                <td>{candidate.position}</td>
+                            </tr>
+                        )
+                    })}
                     
                 </tbody>
             </table>

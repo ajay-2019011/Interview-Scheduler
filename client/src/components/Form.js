@@ -10,30 +10,10 @@ export default function Form() {
     const [college, setCollege] = React.useState("");
     const [position, setPosition] = React.useState("");
     const [date, setDate] = React.useState(null);
-    const [startTime, setStartTime] = React.useState(null);
-    const [endTime, setEndTime] = React.useState(null);
+    const [startTime, setStartTime] = React.useState("00:00");
+    const [endTime, setEndTime] = React.useState("00:00");
     const [toSend, setToSend] = React.useState(false);
-    // const [formData, setFormData] = React.useState(
-    //     {
-    //         name: "", 
-    //         email: "", 
-    //         mobile: "",
-    //         college: "", 
-    //         position: "",
-    //         date: "",
-    //         toSend: false
-    //     }
-    // )
-    // function handleChange(event) {
-    //     const {name, value, type, checked} = event.target
-    //     console.log(event.target)
-    //     setFormData(prevFormData => {
-    //         return {
-    //             ...prevFormData,
-    //             [name]: type === "checkbox" ? checked : value
-    //         }
-    //     })
-    // }
+    
     function handleNameChange(event){
         setName(event.target.value)
     }
