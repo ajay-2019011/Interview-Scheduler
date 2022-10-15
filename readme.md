@@ -1,4 +1,4 @@
-![interview-scheduler logo](https://img.freepik.com/free-vector/stopwatch-timer-cartoon-icon-illustration_138676-2420.jpg?w=2000)
+![interview-scheduler logo](https://p.kindpng.com/picc/s/367-3674022_alarm-clock-windows-10-alarm-clock-icon-hd.png)
 
 
 
