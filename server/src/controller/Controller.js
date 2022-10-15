@@ -60,6 +60,7 @@ class Controller
                     id : req.interviewDetails._id,
                     title : req.interviewDetails.title,
                     date : req.interviewDetails.date,
+                    position : req.interviewDetails.position,
                     start_time : req.interviewDetails.start_time,
                     end_time : req.interviewDetails.end_time,
                     participants : req.interviewDetails.participants
@@ -74,7 +75,9 @@ class Controller
                     status : constants.SUCCESS,
                     meeting_details : {
                         meeting_id : req.saveData._id,
+                        title : req.saveData.title,
                         date : req.saveData.date,
+                        position : req.saveData.position,
                         start_time : req.saveData.start_time,
                         end_time : req.saveData.end_time,
                         participants : req.saveData.participants
@@ -90,12 +93,13 @@ class Controller
                     opcode : constants.opcode.UPDATE_MEETING,
                     status : constants.SUCCESS,
                     meeting_details : {
-                        meeting_id : req.body.meeting_id,
-                        date : req.body.date,
+                        id : req.body._id,
                         title : req.body.title,
+                        date : req.body.date,
+                        position : req.body.position,
                         start_time : req.body.start_time,
                         end_time : req.body.end_time,
-                        participants : req.body.participants
+                        candidates : req.body.candidates
                     },
                     message : constants.message.MEETING_UPDATED
                 }
@@ -108,9 +112,10 @@ class Controller
                     opcode : constants.opcode.DELETE_MEETING,
                     status : constants.SUCCESS,
                     interview_details : {
-                        interview_id : req.body.id,
+                        interview_id : req.body._id,
                         date : req.interviewDetails.date,
                         title : req.interviewDetails.title,
+                        position : req.interviewDetails.position,
                         start_time : req.interviewDetails.start_time,
                         end_time : req.interviewDetails.end_time,
                         candidates : req.interviewDetails.candidates

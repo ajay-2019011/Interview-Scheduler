@@ -1,6 +1,8 @@
 import React from 'react';
 import '../styles/Content.css'
 
+
+
 export default function Content(props){
     return(
         <div className='content'>
@@ -11,7 +13,7 @@ export default function Content(props){
                 is no clash in interview timings for any student.
             </p>
             <p id="instruct">Click the button below to schedule an interview</p>
-            <button id="scheduleBtn" onClick={() => props.handleClick(1)}>Schedule Interview</button>
+            <button id="scheduleBtn" onClick={() => {props.goToForm(-1, "schedule"); props.handleClick(1)}}>Schedule Interview</button>
         </div>
     )
 }

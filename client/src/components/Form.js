@@ -1,30 +1,39 @@
-import React from "react"
+import React, {useEffect, useState} from "react"
 import DatePicker from 'react-date-picker'
 import { TimePicker } from 'react-ios-time-picker';
+import Multiselect from 'multiselect-react-dropdown';
 import '../styles/Form.css'
+import { urls } from '../urls/urls'
+import InvokeAPI from '../api/InvokeAPI'
 
-export default function Form() {
-    const [name, setName] = React.useState("");
-    const [email, setEmail] = React.useState("");
-    const [mobile, setMobile] = React.useState("");
-    const [college, setCollege] = React.useState("");
-    const [position, setPosition] = React.useState("");
-    const [date, setDate] = React.useState(null);
-    const [startTime, setStartTime] = React.useState("00:00");
-    const [endTime, setEndTime] = React.useState("00:00");
-    const [toSend, setToSend] = React.useState(false);
+export default function Form(props) {
     
-    function handleNameChange(event){
-        setName(event.target.value)
+    const interviewDetails = props.interviewDetails
+    // Converting Date in String "12-10-2022" to Date() object
+    var dateObj = null;
+    console.log(interviewDetails.length !== 0)
+    if(interviewDetails.length !== 0){
+        const dateStr = interviewDetails.date
+        const [day, month, year] = dateStr.split('-')
+        dateObj  = new Date(+year, +month - 1, +day)
+        console.log(dateObj)
     }
-    function handleEmailChange(event){
-        setEmail(event.target.value)
-    }
-    function handleMobileChange(event){
-        setMobile(event.target.value)
-    }
-    function handleCollegeChange(event){
-        setCollege(event.target.value)
+
+    const candidatesData = props.candidatesData
+    const candidatesEmails = candidatesData.map( (candidate) => candidate.email)
+    
+    const [candidates, setCandidates] = React.useState(candidatesEmails)
+    const [selectedCandidates, setSelectedCandidates] = useState(interviewDetails ? interviewDetails.candidates : [])
+    const [title, setTitle] = React.useState(interviewDetails ? interviewDetails.title : "");
+    const [position, setPosition] = React.useState(interviewDetails ? interviewDetails.position : "");
+    const [date, setDate] = React.useState(interviewDetails ? dateObj : null);
+    const [startTime, setStartTime] = React.useState(interviewDetails ? interviewDetails.start_time :"00:00");
+    const [endTime, setEndTime] = React.useState(interviewDetails ? interviewDetails.end_time : "00:00");
+    const [toSend, setToSend] = React.useState(false);
+    const [alertMessage, setAlertMessage] = useState(' ')
+    
+    function handleTitleChange(event){
+        setTitle(event.target.value)
     }
     function handlePositionChange(event){
         setPosition(event.target.value)
@@ -42,75 +51,104 @@ export default function Form() {
     function handleEndTimeChange(event){
         setEndTime(event)
     }
+
+    const modifyParticipantsList = (selectedList, selectedItem) => {
+        setSelectedCandidates(selectedList);
+        console.log(selectedCandidates)
+    }
     
-    function handleReset(event){
-        setName("")
-        setEmail("")
-        setMobile("")
-        setCollege("")
+    
+    function handleReset(){
+        setTitle("")
+        setSelectedCandidates([])
         setPosition("")
         setDate(null)
-        // setStartTime(null)
-        // setEndTime(null)
+        setStartTime(null)
+        setEndTime(null)
         setToSend(false)
         
-        console.log(startTime);
+        console.log("Reset Done", selectedCandidates, title, position, toSend, date, startTime, endTime);
     }
 
-    function handleSubmit(event) {
+    async function handleSubmit(event){
         event.preventDefault()
-        // submitToApi(formData)
         
-        console.log(name, email, mobile, college, position, toSend, date, startTime, endTime)
+        console.log("Submitting...")
+        if(title.trim()==='' || selectedCandidates.length===0 || startTime === "00:00"
+            || endTime ==="00:00")
+            setAlertMessage("Please fill in all the details")
+        else if(props.formState === "edit"){
+            console.log('Changing...')
+            var requestBody = {
+                _id : interviewDetails._id,
+                title : title,
+                date : `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`,
+                position : position,
+                start_time : startTime,
+                end_time : endTime,
+                candidates : selectedCandidates
+            }
+            console.log(requestBody)
+            var response = await InvokeAPI.post(urls.UPDATE_INTERVIEW, requestBody)
+            handleReset()
+        }
+        else
+        {
+            setAlertMessage(' ')
+            
+            var requestBody = {
+                title : title,
+                date : `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`,
+                position : position,
+                start_time : startTime,
+                end_time : endTime,
+                candidates : selectedCandidates
+            }
+
+            var response = await InvokeAPI.post(urls.SCHEDULE_INTERVIEW, requestBody)
+        }
+        console.log(response)
+
+        if(response.status==="SUCCESS")
+            window.location.reload()
+        
+    }
+
+    function handleCancel(idx, formState){
+        props.goToForm(idx, formState)
+        props.handleClick(0)
     }
 
     return (
         <div className="form-wrapper">
             <h1 id="form-heading">Fill the given Form</h1>
             <form 
-                onSubmit={handleSubmit}
                 id="form"
             >
                 <div>
-                    <label htmlFor="name">Candidate Name  </label>
+                    <label htmlFor="title">Title </label>
                     <input
                         type="text"
-                        placeholder="Candidate Name"
-                        onChange={handleNameChange}
-                        name="name"
-                        value={name}
+                        placeholder="Meeting Title"
+                        onChange={handleTitleChange}
+                        name="title"
+                        value={title}
                     />
                 </div>
-                <div>
-                    <label htmlFor="email">E-mail  </label>
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        onChange={handleEmailChange}
-                        name="email"
-                        value={email}
+                    {/* <label htmlFor="Candidates">Select Candidates  </label> */}
+                    <Multiselect
+                        isObject={false}
+                        onKeyPressFn={function noRefCheck(){}}
+                        onRemove={modifyParticipantsList}
+                        onSearch={function noRefCheck(){}}
+                        onSelect={modifyParticipantsList}
+                        selectedValues={interviewDetails && interviewDetails.candidates}
+                        placeholder = 'Add Candidates'
+                        options={candidates}
+                        showCheckbox
+                        className='selectedList'
                     />
-                </div>
-                <div>
-                    <label htmlFor="mobile">Mobile No  </label>
-                    <input
-                        type="text"
-                        placeholder="98456XXXXX"
-                        onChange={handleMobileChange}
-                        name="mobile"
-                        value={mobile}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="college">College/University   </label>
-                    <input
-                        type="text"
-                        placeholder="College Name"
-                        onChange={handleCollegeChange}
-                        name="college"
-                        value={college}
-                    />
-                </div>
+               
                 <div>
                     <label htmlFor="position">What position is the the interview applied for?</label>
                     <br />
@@ -121,14 +159,14 @@ export default function Form() {
                         name="position"
                     >
                         <option value="">--Available Positions--</option>
-                        <option value="front">Front-End Developer (Intern)</option>
-                        <option value="back">Back-End Developer (Intern)</option>
-                        <option value="full">Full Stack Developer (Intern)</option>
-                        <option value="sde1">Software Development Engineer - 1</option>
-                        <option value="sde2">Software Development Engineer - 2</option>
-                        <option value="sde3">Software Development Engineer - 3</option>
-                        <option value="manager">Product Manager</option>
-                        <option value="hr">Human Resources</option>
+                        <option value="Front-End Developer">Front-End Developer</option>
+                        <option value="Back-End Developer">Back-End Developer</option>
+                        <option value="Full Stack Developer">Full Stack Developer</option>
+                        <option value="SDE-1">SDE-1</option>
+                        <option value="SDE-2">SDE-2</option>
+                        <option value="SDE-3">SDE-3</option>
+                        <option value="Product Manager">Product Manager</option>
+                        <option value="Human Resources">Human Resources</option>
                     </select>
                 </div>
                 <div>
@@ -168,12 +206,11 @@ export default function Form() {
                     />
                     <label htmlFor="toSend">Do you want to notify the candidate by E-mail?</label>
                 </div>
-                <button id="submit">Submit</button>
-                <button 
-                    type="reset" 
-                    id="reset"  
-                    onClick={handleReset}
-                >Clear Form</button>
+                <div id='alert'>{alertMessage}</div>
+                <div className="btns">
+                    <button id="form-cancel" onClick={() => handleCancel(-1, "reset")}>Cancel</button>
+                    <button onClick={handleSubmit} id="submit">Submit</button>
+                </div>
         </form>
     </div>
     )

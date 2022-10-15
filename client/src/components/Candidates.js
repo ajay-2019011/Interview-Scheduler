@@ -3,19 +3,8 @@ import '../styles/Candidates.css'
 import { urls } from '../urls/urls'
 import InvokeAPI from '../api/InvokeAPI'
 
-export default function List(){
+export default function List(props){
 
-    const [candidatesData, setCandidatesData] = useState([])
-
-    async function fetchAllCandidatesData()
-    {
-        var response = await InvokeAPI.get(urls.ALL_CANDIDATES)
-        setCandidatesData(response.Users)
-    }
-
-    useEffect(()=>{
-        fetchAllCandidatesData();
-    },[])
     return(
         <div className="candidate-list">
             <table>
@@ -30,7 +19,7 @@ export default function List(){
                 </thead>
                 <tbody>
                     
-                    {candidatesData.map((candidate) => {
+                    {props.candidatesData.map((candidate) => {
                         return (
                             <tr>
                                 <td>{candidate.name}</td>

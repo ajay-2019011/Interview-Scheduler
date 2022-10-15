@@ -36,12 +36,7 @@ button{
     align-self: center;
 }
 
-#reset{
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: rgb(143, 6, 6);
-    width:70%
-}
+
 
 #position{
     text-align: center;
@@ -53,6 +48,14 @@ button{
 
 #toSend{
     margin: 0 0.5rem;
+}
+
+.search-wrapper.searchWrapper{
+    margin:0;
+    background-color: white;
+    border: 2px solid #333;
+    border-radius: 0.25rem;
+    width: 88%;
 }
 
 input,
@@ -86,11 +89,17 @@ label{
     margin-bottom: 0.5rem;
 }
 
-#submit{
+.btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#submit, #form-cancel{
     display:inline-block;
     padding:0.35em 1.2em;
     border:none;
-    margin:1rem 0.3em;
+    margin:0rem 0.3em;
     border-radius:0.3em;
     box-sizing: border-box;
     text-decoration:none;
@@ -102,10 +111,18 @@ label{
     text-align:center;
     transition: all 0.2s;
     height: 3rem;
-    width: 18rem;
+    width: 50%;
     align-self: center;
 }
+#form-cancel{
+    background-color: rgb(180, 68, 68);
+}
+
 #submit:hover{
     color:rgb(0, 105, 255);
+    background-color:#FFFFFF;
+}
+#form-cancel:hover{
+    color:rgb(180, 68, 68);
     background-color:#FFFFFF;
 }

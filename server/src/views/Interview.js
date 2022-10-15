@@ -48,6 +48,7 @@ class Interview
 
         var title = req.body.title
         var date = req.body.date
+        var position = req.body.position
         var start_time = req.body.start_time
         var end_time = req.body.end_time
         var participants = req.body.candidates
@@ -58,13 +59,14 @@ class Interview
             //Connect to the Database
             await connect();
 
-            if(title===null || title===undefined || date===null || date===undefined || start_time===null || start_time===undefined
+            if(title===null || title===undefined || date===null || date===undefined || position===null || position===undefined || start_time===null || start_time===undefined
                 || end_time===null || end_time===undefined || participants===null || participants===undefined)
                 throw new Error(constants.INVALID_REQUEST.Code, constants.INVALID_REQUEST.Message)
             
             var interviewDetailsObj = {
                 title : title,
                 date : date,
+                position : position,
                 start_time : start_time,
                 end_time : end_time,
                 candidates : participants
@@ -104,9 +106,10 @@ class Interview
         req.opcode = constants.opcode.UPDATE_MEETING
 
 
-        var id = req.body.id
+        var id = req.body._id
         var title = req.body.title
         var date = req.body.date
+        var position = req.body.position
         var start_time = req.body.start_time
         var end_time = req.body.end_time
         var participants = req.body.candidates
@@ -117,12 +120,13 @@ class Interview
             connect();
 
             if(id===null || id===undefined || title===null || title===undefined || date===null || date===undefined 
-                || start_time===null || start_time===undefined || end_time===null || end_time===undefined || participants===null || participants===undefined)
+                || position===null || position===undefined || start_time===null || start_time===undefined || end_time===null || end_time===undefined || participants===null || participants===undefined)
                 throw new Exception(constants.INVALID_REQUEST.Code, constants.INVALID_REQUEST.Message)
             
             var interviewDetailsObj = {
                 title : title,
                 date : date,
+                position : position,
                 start_time : start_time,
                 end_time : end_time,
                 candidates : participants
@@ -161,7 +165,7 @@ class Interview
         try
         {
 
-            var id = req.body.id
+            var id = req.body._id
 
             console.log("Id is ", id)
 
