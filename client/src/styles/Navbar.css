@@ -24,20 +24,21 @@
     border:none;
     margin:0 0.3em 0.3em 0;
     width:20%;
+    border-radius:0.25em;
     max-height: 5rem;
     box-sizing: border-box;
     text-decoration:none;
     font-family:'Roboto',sans-serif;
     font-size: large;
     font-weight:300;
-    color:#FFFFFF;
-    background-color: #282c34;
+    color: #282c34;
+    background-color: #FFFFFF;
     text-align:center;
     transition: all 0.2s;
 }
 #headerBtn:hover{
-    color:#000000;
-    background-color:#FFFFFF;
+    background-color:#585555;
+    color:#FFFFFF;
 }
 
 #interviewBtn, #candidateBtn{
