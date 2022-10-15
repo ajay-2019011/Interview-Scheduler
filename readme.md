@@ -8,6 +8,7 @@
 ***
 
 A simple tool for managing interviews or meetings of multiple people. To schedule an interview or meeting, please first go through the candidates information and already scheduled meetings. The interview details can be changed or the meeting itself can be cancelled if needed. The candidates added to a meeting can be notified using mail. If the meeting is cancelled or rescheduled, the same will be communicated to the candidates. Candidates having applied to relevant positions can be selected for the interview of a specific position.
+* Deployed Link - [**Interview Scheduler**](https://interview-scheduler0701.netlify.app/)
 
 ### Tech-Stack
 ***
