@@ -6,7 +6,8 @@ const InterviewDetails = mongoose.Schema({
     position: String,
     start_time : String,
     end_time : String,
-    candidates : Array
+    candidates : Array,
+    send : Boolean
 });
 
 module.exports = mongoose.model("InterviewDetails", InterviewDetails);

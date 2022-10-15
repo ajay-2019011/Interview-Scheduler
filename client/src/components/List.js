@@ -34,7 +34,8 @@ export default function List(props){
                 position : interviewDetails.position,
                 start_time : interviewDetails.start_time,
                 end_time : interviewDetails.end_time,
-                candidates : interviewDetails.candidates
+                candidates : interviewDetails.candidates,
+                send : interviewDetails.send 
             }
     
             var response = await InvokeAPI.post(urls.CANCEL_INTERVIEW, requestBody)

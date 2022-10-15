@@ -63,7 +63,8 @@ class Controller
                     position : req.interviewDetails.position,
                     start_time : req.interviewDetails.start_time,
                     end_time : req.interviewDetails.end_time,
-                    participants : req.interviewDetails.participants
+                    participants : req.interviewDetails.participants,
+                    send : req.interviewDetails.send
                 }
 
                 res.status(200).json(responseData);
@@ -80,7 +81,8 @@ class Controller
                         position : req.saveData.position,
                         start_time : req.saveData.start_time,
                         end_time : req.saveData.end_time,
-                        participants : req.saveData.participants
+                        participants : req.saveData.participants,
+                        send : req.saveData.send
                     },
                     message : constants.message.MEETING_SCHEDULED_SUCCESS
                 }
@@ -99,7 +101,8 @@ class Controller
                         position : req.body.position,
                         start_time : req.body.start_time,
                         end_time : req.body.end_time,
-                        candidates : req.body.candidates
+                        candidates : req.body.candidates,
+                        send : req.body.send
                     },
                     message : constants.message.MEETING_UPDATED
                 }
@@ -118,7 +121,8 @@ class Controller
                         position : req.interviewDetails.position,
                         start_time : req.interviewDetails.start_time,
                         end_time : req.interviewDetails.end_time,
-                        candidates : req.interviewDetails.candidates
+                        candidates : req.interviewDetails.candidates,
+                        send : req.interviewDetails.send
                     },
                     message : constants.message.MEETING_CANCELLED
                 }

@@ -52,6 +52,7 @@ class Interview
         var start_time = req.body.start_time
         var end_time = req.body.end_time
         var participants = req.body.candidates
+        var send = req.body.send
 
         try
         {
@@ -69,7 +70,8 @@ class Interview
                 position : position,
                 start_time : start_time,
                 end_time : end_time,
-                candidates : participants
+                candidates : participants,
+                send : send
             }
 
             var interviewDetails = new InterviewDetails(interviewDetailsObj);
@@ -113,6 +115,7 @@ class Interview
         var start_time = req.body.start_time
         var end_time = req.body.end_time
         var participants = req.body.candidates
+        var send = req.body.send
 
         try
         {
@@ -129,7 +132,8 @@ class Interview
                 position : position,
                 start_time : start_time,
                 end_time : end_time,
-                candidates : participants
+                candidates : participants,
+                send : send
             }
 
             var updateResult = await InterviewDetails.updateOne({_id : id},interviewDetailsObj);
