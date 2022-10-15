@@ -49,5 +49,4 @@ class InvokeAPI
         }
     }
 }
-
-module.exports = InvokeAPI
+export default InvokeAPI
