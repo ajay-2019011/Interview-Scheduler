@@ -42,13 +42,13 @@ function App() {
   async function fetchAllInterviewsData()
   {
     var response = await InvokeAPI.get(urls.ALL_INTERVIEWS)
-    // console.log(response.all_interview_details)
+    
     setInterviewsData(response.all_interview_details)
   }
   useEffect(()=>{
     fetchAllInterviewsData();
   },[])
-
+  
   const [interviewDetails, setInterviewDetails] = useState([])
   const [formState, setFormState] = useState('');
   function goToForm(interviewIdx, formState){
@@ -74,7 +74,7 @@ function App() {
                                           formState={formState}
                                           goToForm={goToForm}
                                           />}
-        {buttonState.interviewButton && <List handleClick={handleClick} goToForm={goToForm}/>}
+        {buttonState.interviewButton && <List handleClick={handleClick} goToForm={goToForm} interviewsData={interviewsData} />}
         {buttonState.candidateButton && <Candidates candidatesData={candidatesData}/>}
       </header>
       <footer></footer>

@@ -1,24 +1,21 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import '../styles/List.css'
 import { urls } from '../urls/urls'
 import InvokeAPI from '../api/InvokeAPI'
+import Pagination from './Pagination';
+
+let PageSize = 3
 
 export default function List(props){
-        const [interviewsData, setInterviewsData] = useState([])
-        
-        
-        async function fetchAllInterviewsData()
-        {
-            var response = await InvokeAPI.get(urls.ALL_INTERVIEWS)
-            // console.log(response.all_interview_details)
-            setInterviewsData(response.all_interview_details)
-        }
+        const [currentPage, setCurrentPage] = useState(1);
 
-        useEffect(()=>{
-            fetchAllInterviewsData();
-        },[])
-
+        const interviewsData = props.interviewsData
         console.log(interviewsData)
+        const currentInterviewsData = useMemo(() => {
+            const firstPageIndex = (currentPage - 1) * PageSize;
+            const lastPageIndex = firstPageIndex + PageSize;
+            return interviewsData.slice(firstPageIndex, lastPageIndex);
+          }, [currentPage]);
 
         function handleEdit(interviewIdx, formState){
             props.goToForm(interviewIdx, formState)
@@ -57,7 +54,7 @@ export default function List(props){
                     </tr>  
                 </thead>
                 <tbody>
-                {interviewsData.map((interview, idx) => {
+                {currentInterviewsData.map((interview, idx) => {
                         return (
                             <tr>
                                 <td>{interview.title}</td>
@@ -80,6 +77,13 @@ export default function List(props){
                     })}
                 </tbody>
             </table>
+            <Pagination
+                className="pagination-bar"
+                currentPage={currentPage}
+                totalCount={interviewsData.length}
+                pageSize={PageSize}
+                onPageChange={page => setCurrentPage(page)}
+            />
         </div>
     )
 }
