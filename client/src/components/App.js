@@ -5,6 +5,8 @@ import Content from './Content'
 import Form from './Form'
 import List from './List'
 import Candidates from './Candidates'
+import { StyledEngineProvider } from "@mui/material/styles";
+import Progress from "./Progress";
 
 import { urls } from '../urls/urls'
 import InvokeAPI from '../api/InvokeAPI'
@@ -27,27 +29,23 @@ function App() {
         [buttons[id]]: true
       })
   }
+  const [loading, setLoading] = useState(true);
 
   const [candidatesData, setCandidatesData] = useState([])
-  async function fetchAllCandidatesData()
+  const [interviewsData, setInterviewsData] = useState([])
+  async function fetchAllData()
   {
-      var response = await InvokeAPI.get(urls.ALL_CANDIDATES)
-      setCandidatesData(response.Users)
-  }
-  useEffect(()=>{
-      fetchAllCandidatesData();
-  },[])
 
-  const [interviewsData, setInterviewsData] = useState([])        
-  async function fetchAllInterviewsData()
-  {
-    var response = await InvokeAPI.get(urls.ALL_INTERVIEWS)
-    
-    setInterviewsData(response.all_interview_details)
+      var response1 = await InvokeAPI.get(urls.ALL_CANDIDATES)
+      var response2 = await InvokeAPI.get(urls.ALL_INTERVIEWS)
+      setCandidatesData(response1.Users)
+      setInterviewsData(response2.all_interview_details)
+      setLoading(false);
   }
   useEffect(()=>{
-    fetchAllInterviewsData();
-  },[])
+      fetchAllData();
+  },[])        
+  
   
   const [interviewDetails, setInterviewDetails] = useState([])
   const [formState, setFormState] = useState('');
@@ -65,6 +63,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        {loading && <StyledEngineProvider injectFirst> <Progress /> </StyledEngineProvider>}
         <Navbar handleClick={handleClick}/>
         {buttonState.headerButton && <Content handleClick={handleClick} goToForm={goToForm}/>}
         {buttonState.scheduleButton && <Form 
