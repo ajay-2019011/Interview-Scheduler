@@ -58,12 +58,12 @@ td{
     border-color:cadetblue;
 }
 
-.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root{
-    height: 3rem;
+.interview-list .search{
+    background-color: white;
+    width: 55%;
+    align-self: center;
 }
 
-.search{
-    background-color: white;
-    height: 3rem;
-    width: 100%;
+#outlined-basic{
+    margin: 0.5rem;
 }

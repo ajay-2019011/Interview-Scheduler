@@ -69,7 +69,7 @@ export default function List(props){
                     onChange={inputHandler}
                     variant="outlined"
                     fullWidth
-                    label="Search by title...."
+                    label="Search by title..."
                 />
             </div>
             <table>

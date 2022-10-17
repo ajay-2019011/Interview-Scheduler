@@ -36,12 +36,13 @@ td{
     margin-bottom: 2rem;
 }
 
-.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root{
-    height: 3rem;
+.candidate-list .search{
+    background-color: white;
+    width: 40%;
+    align-self: center;
 }
 
-.search{
-    background-color: white;
-    height: 3rem;
-    width: 100%;
+#outlined-basic{
+    margin: 0.5rem;
 }
+
