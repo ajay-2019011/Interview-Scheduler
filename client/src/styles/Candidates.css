@@ -35,3 +35,13 @@ td{
     font-size: large;
     margin-bottom: 2rem;
 }
+
+.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root{
+    height: 3rem;
+}
+
+.search{
+    background-color: white;
+    height: 3rem;
+    width: 100%;
+}

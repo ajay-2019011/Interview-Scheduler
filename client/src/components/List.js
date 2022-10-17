@@ -3,19 +3,39 @@ import '../styles/List.css'
 import { urls } from '../urls/urls'
 import InvokeAPI from '../api/InvokeAPI'
 import Pagination from './Pagination';
+import TextField from "@mui/material/TextField";
 
 let PageSize = 3
 
 export default function List(props){
         const [currentPage, setCurrentPage] = useState(1);
-
+        const [inputText, setInputText] = useState("");
+        console.log(inputText==="")
+        let inputHandler = (e) => {
+            //convert input text to lower case
+            var lowerCase = e.target.value.toLowerCase();
+            setInputText(lowerCase);
+        };
         const interviewsData = props.interviewsData
-        console.log(interviewsData)
+        const filteredData = interviewsData.filter((interview) => {
+                return interview.title.toLowerCase().includes(inputText)
+            }
+        )
+        // console.log(filteredData)
+        // console.log(interviewsData)
+        var toBeUsedData
+        if(inputText===""){
+            toBeUsedData=interviewsData
+        }
+        else{
+            toBeUsedData=filteredData
+        }
+
         const currentInterviewsData = useMemo(() => {
             const firstPageIndex = (currentPage - 1) * PageSize;
             const lastPageIndex = firstPageIndex + PageSize;
-            return interviewsData.slice(firstPageIndex, lastPageIndex);
-          }, [currentPage]);
+            return toBeUsedData.slice(firstPageIndex, lastPageIndex);
+          }, [currentPage, inputText]);
 
         function handleEdit(interviewIdx, formState){
             props.goToForm(interviewIdx, formState)
@@ -43,6 +63,15 @@ export default function List(props){
     
     return(
         <div className="interview-list">
+            <div className="search">
+                <TextField
+                    id="outlined-basic"
+                    onChange={inputHandler}
+                    variant="outlined"
+                    fullWidth
+                    label="Search by title...."
+                />
+            </div>
             <table>
                 <caption><h1>List of Interviews Scheduled</h1></caption>
                 <thead>
@@ -81,7 +110,7 @@ export default function List(props){
             <Pagination
                 className="pagination-bar"
                 currentPage={currentPage}
-                totalCount={interviewsData.length}
+                totalCount={toBeUsedData.length}
                 pageSize={PageSize}
                 onPageChange={page => setCurrentPage(page)}
             />

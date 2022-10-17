@@ -57,3 +57,13 @@ td{
     background-color:#FFFFFF;
     border-color:cadetblue;
 }
+
+.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root{
+    height: 3rem;
+}
+
+.search{
+    background-color: white;
+    height: 3rem;
+    width: 100%;
+}
