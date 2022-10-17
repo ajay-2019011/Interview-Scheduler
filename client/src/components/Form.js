@@ -11,20 +11,13 @@ export default function Form(props) {
     const interviewDetails = props.interviewDetails
     // Converting Date in String "12-10-2022" to Date() object
     var dateObj = null;
-    var prevTitle, prevPosition, prevDate, prevSelectedCandidates, prevStartTime, prevEndTime
+    
     // console.log(interviewDetails.length !== 0)
     if(interviewDetails.length !== 0){
         const dateStr = interviewDetails.date
         const [day, month, year] = dateStr.split('-')
         dateObj  = new Date(+year, +month - 1, +day)
-        console.log("prev values are there", dateObj)
-        
-        prevTitle = interviewDetails.title
-        prevPosition = interviewDetails.position
-        prevDate = dateObj
-        prevSelectedCandidates = interviewDetails.selectedCandidates
-        prevStartTime = interviewDetails.start_time
-        prevEndTime = interviewDetails.end_time
+        console.log(dateObj)
     }
 
     const candidatesData = props.candidatesData
@@ -117,20 +110,11 @@ export default function Form(props) {
         // console.log(position)
         if(title === undefined || selectedCandidates === undefined || date === null || startTime === undefined
             || endTime === undefined || position === undefined || startTime<minTime 
-            || endTime>maxTime || startTime>endTime)
+            || endTime>maxTime || startTime>endTime || availableTimeSlots.length!==0)
         {
             setAlertMessage("Please fill all the fields with * mark")
         }
         else if(props.formState === "edit"){
-            console.log(prevTitle === title && prevSelectedCandidates === selectedCandidates && prevDate === date
-                && prevStartTime === startTime && prevEndTime === endTime && prevPosition === position)
-            if(prevTitle === title && prevSelectedCandidates === selectedCandidates && prevDate === date
-                && prevStartTime === startTime && prevEndTime === endTime && prevPosition === position)
-            {
-                setAlertMessage('Meeting data same as previous one. Want to Cancel?')
-            }
-            else
-            {
                 setAlertMessage(' ')
                 console.log('Changing...')
                 var requestBody = {
@@ -144,11 +128,11 @@ export default function Form(props) {
                     send : toSend
                 }
                 console.log(requestBody)
+                props.handleLoading(true)
                 var response = await InvokeAPI.post(urls.UPDATE_INTERVIEW, requestBody)
-            }
-            // handleReset()
+                props.handleLoading(false)
         }
-        else
+        else 
         {
             setAlertMessage(' ')
             
@@ -162,7 +146,9 @@ export default function Form(props) {
                 send : toSend
             }
             console.log(requestBody)
+            props.handleLoading(true)
             var response = await InvokeAPI.post(urls.SCHEDULE_INTERVIEW, requestBody)
+            props.handleLoading(false)
         }
         console.log(response)
 

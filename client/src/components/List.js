@@ -34,8 +34,9 @@ export default function List(props){
                 candidates : interviewDetails.candidates,
                 send : interviewDetails.send 
             }
-    
+            props.handleLoading(true)
             var response = await InvokeAPI.post(urls.CANCEL_INTERVIEW, requestBody)
+            props.handleLoading(false)
             console.log(response)
             props.handleClick(0);
         }

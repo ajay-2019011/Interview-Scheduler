@@ -30,17 +30,20 @@ function App() {
       })
   }
   const [loading, setLoading] = useState(true);
+  function handleLoading(load){
+    setLoading(load)
+  }
 
   const [candidatesData, setCandidatesData] = useState([])
   const [interviewsData, setInterviewsData] = useState([])
   async function fetchAllData()
   {
-
+      handleLoading(true);
       var response1 = await InvokeAPI.get(urls.ALL_CANDIDATES)
       var response2 = await InvokeAPI.get(urls.ALL_INTERVIEWS)
       setCandidatesData(response1.Users)
       setInterviewsData(response2.all_interview_details)
-      setLoading(false);
+      handleLoading(false);
   }
   useEffect(()=>{
       fetchAllData();
@@ -72,8 +75,14 @@ function App() {
                                           interviewDetails={interviewDetails}
                                           formState={formState}
                                           goToForm={goToForm}
+                                          handleLoading={handleLoading}
                                           />}
-        {buttonState.interviewButton && <List handleClick={handleClick} goToForm={goToForm} interviewsData={interviewsData} />}
+        {buttonState.interviewButton && <List 
+                                          handleClick={handleClick} 
+                                          goToForm={goToForm} 
+                                          interviewsData={interviewsData} 
+                                          handleLoading={handleLoading}
+                                          />}
         {buttonState.candidateButton && <Candidates candidatesData={candidatesData}/>}
       </header>
       <footer></footer>
